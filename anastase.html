@@ -1,0 +1,77 @@
+import 'bootstrap/dist/css/bootstrap.css'; 
+
+<template>
+
+  <div class="container">
+    <h1>Simple Form Example</h1>
+
+    <!-- Form -->
+    <form @submit.prevent="submitForm">
+      <input 
+        type="text" 
+        v-model="name" 
+        placeholder="Enter name" 
+      />
+
+      <button type="submit">Submit</button>
+      <button type="button" @click="cancelForm">Cancel</button>
+    </form>
+
+    <hr />
+ <h1 class="text-primary">Hello, Vue.js with Bootstrap! </h1> 
+    <button class="btn btn-primary">Click me</button> 
+    <div class="alert alert-success" role="alert"> 
+      This is a success message using Bootstrap classes. 
+    </div
+    <!-- List -->
+    <ul>
+      <li v-for="(item, index) in names" :key="index">
+        {{ item }}
+        <button @click="deleteItem(index)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      name: "",
+      names: []
+    }
+  },
+  methods: {
+    submitForm() {
+      if (this.name.trim() !== "") {
+        this.names.push(this.name)
+        this.name = ""
+      }
+    },
+    deleteItem(index) {
+      this.names.splice(index, 1)
+    },
+    cancelForm() {
+      this.name = ""
+    }
+  }
+}
+</script>
+
+<style>
+.container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+input {
+  padding: 8px;
+  margin-right: 10px;
+}
+
+button {
+  margin: 5px;
+  padding: 6px 12px;
+}
+</style>
